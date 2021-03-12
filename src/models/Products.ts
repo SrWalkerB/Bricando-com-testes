@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @Entity("products")
 class Products{
@@ -13,8 +13,8 @@ class Products{
     @Column()
     description: string
 
-    @Column()
-    created_at: string
+    @CreateDateColumn()
+    created_at: Date
 
     @BeforeUpdate()
     @BeforeInsert()

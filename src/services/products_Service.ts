@@ -16,14 +16,13 @@ class Products_Services{
     async create_Product_Service(data: ICreateProduct){
 
         const productsRepository = await getCustomRepository(ProductsRepository);
-
+        
         const products = productsRepository.create({
             name: data.name,
             description: data.description
         })
 
         await productsRepository.save(products);
-
         return products;
     }
 

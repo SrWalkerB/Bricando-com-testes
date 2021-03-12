@@ -5,7 +5,7 @@
   "main": "index.js",
   "module": "commonjs",
   "scripts": {
-    "test": "jest",
+    "test": "jest --env node --detectOpenHandles",
     "dev": "ts-node-dev --transpile-only --respawn bin/server",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
@@ -13,8 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-transform-object-assign": "^7.12.13",
+    "@babel/plugin-transform-regenerator": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@jest/globals": "^26.6.2",
+    "babel-polyfill": "^6.26.0",
     "express": "^4.17.1",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
