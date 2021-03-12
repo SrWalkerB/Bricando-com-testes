@@ -1,4 +1,4 @@
-import { getCustomRepository } from "typeorm";
+import { getConnection, getCustomRepository } from "typeorm";
 import ProductsRepository from "../repositories/ProductsRepositorys";
 
 interface ICreateProduct{
@@ -9,6 +9,9 @@ interface ICreateProduct{
 class Products_Services{
 
     async list_Product_Service(){
+
+        //await getConnection().createQueryBuilder().select("products").where("created_at").orderBy("desc");
+
 
         return await getCustomRepository(ProductsRepository).find();
     }
