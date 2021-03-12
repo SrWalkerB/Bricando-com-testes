@@ -8,15 +8,13 @@ const generate = () => {
     return crypto.randomBytes(20).toString("hex");
 }
  
-const requestGET = (method: Method | any, url: string) => {
-    return axios({
-        method: method,
-        url: stringify
-    })
 
 test.only("List products", async () => {    
     
-    const result = await requestGET("http://localhost:4560/products");
+    const result = await axios({
+        method: "GET",
+        url: "http://localhost:4560/products"
+    });
 
     expect(result.status).toBe(200);
 })
