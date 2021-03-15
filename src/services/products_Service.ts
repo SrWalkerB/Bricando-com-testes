@@ -6,13 +6,15 @@ interface ICreateProduct{
     description: string
 }
 
+interface IUpdateProduct{
+    id: string,
+    name?: string,
+    description?: string
+}
+
 class Products_Services{
 
     async list_Product_Service(){
-
-        //await getConnection().createQueryBuilder().select("products").where("created_at").orderBy("desc");
-
-
         return await getCustomRepository(ProductsRepository).find();
     }
 
@@ -27,6 +29,26 @@ class Products_Services{
 
         await productsRepository.save(products);
         return products;
+    }
+
+    async update_Product_Service(data: IUpdateProduct){
+
+        const id = data.id;
+        const productsRepository = await getCustomRepository(ProductsRepository);
+
+        const seacherProduct = await productsRepository.findOne({id});
+
+        if(!seacherProduct) {
+            return { err: "Products not found"};  
+        } 
+
+       const newData = await productsRepository.save({
+            id: id,
+            name: data.name!,
+            description: data.description!
+       });
+
+        return {msg: newData};
     }
 
     async delete_Product_Service(id: string){

@@ -34,6 +34,29 @@ class Products_Controllers{
         }
     }
 
+    async update_Product(Request: Request, Response: Response){
+        try {
+            
+            const { id } = Request.params;
+            const { name, description } = Request.body;
+
+            const result = await products_Service.update_Product_Service({
+                id: id,
+                name: name,
+                description: description
+            })
+
+            if(result.err) return Response.status(404).json({ err: result.err });
+
+            return Response.status(200).json(result.msg);
+
+        } catch (error) {
+            
+            console.log(error);
+            return Response.status(500).json({ err: error });
+        }
+    }
+
     async delete_Product(Request: Request, Response: Response){
         try {
             
